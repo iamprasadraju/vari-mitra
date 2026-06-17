@@ -1,5 +1,9 @@
-from django.http import HttpResponse
+import json
+
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 from .forms import FarmerForm
 from .models import FarmerTicket, FarmerConsignmentInfo, PaddyInfo
@@ -29,6 +33,64 @@ def home(request):
         "farmer_metadata": farmer_metadata,
         "paddy_data": paddy_data,
     })
+
+
+@csrf_exempt
+@require_POST
+def decode_aadhaar_qr(request):
+    from pyaadhaar.decode import AadhaarOldQr, AadhaarSecureQr
+
+    try:
+        body = json.loads(request.body)
+        qr_text = body.get("qr_text", "").strip()
+        if not qr_text:
+            return JsonResponse({"success": False, "error": "No QR text provided"})
+
+        try:
+            obj = AadhaarOldQr(qr_text)
+            result = obj.decodeddata()
+            return JsonResponse({
+                "success": True,
+                "name": result.get("name", ""),
+                "aadhar_num": result.get("uid", ""),
+                "location": (
+                    result.get("vtc")
+                    or result.get("dist")
+                    or result.get("loc")
+                    or ""
+                ),
+            })
+        except Exception:
+            pass
+
+        try:
+            obj = AadhaarSecureQr(int(qr_text))
+            result = obj.decodeddata()
+            last_four = result.get("referenceid", "")[:4]
+            parts = [
+                result.get("house", ""),
+                result.get("street", ""),
+                result.get("location", ""),
+                result.get("vtc", ""),
+                result.get("subdistrict", ""),
+                result.get("district", ""),
+                result.get("state", ""),
+                result.get("pincode", ""),
+            ]
+            address = ", ".join(p for p in parts if p)
+            return JsonResponse({
+                "success": True,
+                "name": result.get("name", ""),
+                "aadhar_num": f"****{last_four}" if last_four else "",
+                "location": address,
+            })
+        except Exception:
+            pass
+
+        return JsonResponse({"success": False, "error": "Could not decode Aadhaar QR"})
+
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)})
 
 
 # Book tickets by farmers for packing paddy
