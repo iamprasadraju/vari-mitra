@@ -53,38 +53,38 @@ Built for regional use in Telugu-speaking areas, the UI is presented in Telugu (
 
 ```
 ┌──────────────┐     ┌────────────────────────┐
-│  PaddyInfo   │     │    FarmerTicket         │
+│  PaddyInfo   │     │    FarmerTicket        │
 │──────────────│     │────────────────────────│
-│ paddy_variety│────▶│ paddy_variety (FK)      │
-│ paddy_rate   │     │ tracking_id (auto-gen)  │
-└──────────────┘     │ farmer_name             │
-                     │ mobile_num              │
-┌──────────────┐     │ aadhar_num              │
-│  Workers     │     │ location                │
-│──────────────│     │ moisture                │
-│ name         │     │ status (5 stages)       │
-│ mobile_num   │     │ created_at              │
+│ paddy_variety│────▶│ paddy_variety (FK)     │
+│ paddy_rate   │     │ tracking_id (auto-gen) │
+└──────────────┘     │ farmer_name            │
+                     │ mobile_num             │
+┌──────────────┐     │ aadhar_num             |
+│  Workers     │     │ location               │
+│──────────────│     │ moisture               │
+│ name         │     │ status (5 stages)      │
+│ mobile_num   │     │ created_at             │
 │ status       │     └───────────┬────────────┘
 └──────┬───────┘                 │
        │ 1:N                1:1  │
        ▼                        ▼
 ┌──────────────┐     ┌────────────────────────┐
-│ WorkersGroup │     │ FarmerConsignmentInfo   │
+│ WorkersGroup │     │ FarmerConsignmentInfo  │
 │──────────────│     │────────────────────────│
-│ group_leader │◀────│ workers_group (FK)      │
-│ group_members│     │ vehicle (FK)            │
-│ group_revenue│     │ num_bags (40kg)         │
-└──────────────┘     │ total_brokerage (auto)  │
-                     │ consignment_created_by  │
+│ group_leader │◀────│ workers_group (FK)     │
+│ group_members│     │ vehicle (FK)           │
+│ group_revenue│     │ num_bags (40kg)        │
+└──────────────┘     │ total_brokerage (auto) │
+                     │ consignment_created_by │
                      └────────────────────────┘
 
-┌──────────────┐     ┌──────────────────────┐
-│ VehicleInfo  │     │    AdminSettings      │
-│──────────────│     │──────────────────────│
-│ vehicle_num  │     │ workers_group_fee     │
-│ driver_name  │     │ mill_fee_per_bag      │
-│ driver_contact│    └──────────────────────┘
-└──────────────┘
+┌──────────────-┐     ┌──────────────────────┐
+│ VehicleInfo   │     │    AdminSettings     │
+│──────────────-│     │──────────────────────│
+│ vehicle_num   │     │ workers_group_fee    │
+│ driver_name   │     │ mill_fee_per_bag     │
+│ driver_contact│     └──────────────────────┘
+└──────────────-┘
 ```
 
 **7 models** in total: `FarmerTicket`, `FarmerConsignmentInfo`, `PaddyInfo`, `Workers`, `WorkersGroup`, `VehicleInfo`, `AdminSettings` (+ proxy model `AdminDashboard`).
