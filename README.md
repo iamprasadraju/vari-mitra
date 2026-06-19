@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">Vari Mitra <sup>వరి మిత్ర</sup></h1>
-<p align="center"><em>A digital paddy brokerage management platform connecting farmers, workers,and brokers.</em></p>
+<p align="center"><em>A digital paddy brokerage management platform connecting farmers, workers and brokers.</em></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white">
