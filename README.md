@@ -10,6 +10,7 @@
   <img src="https://img.shields.io/badge/Django-6.0-092E20?logo=django&logoColor=white">
   <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white">
   <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white">
+  <img src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-EF9421?logo=creativecommons&logoColor=white">
 </p>
 
 ---
@@ -110,7 +111,7 @@ Built for regional use in Telugu-speaking areas, the UI is presented in Telugu (
 - Python 3.13+
 - pip (or uv/pipenv)
 
-### Setup
+### Setup (pip)
 
 ```bash
 # Clone the repository
@@ -123,6 +124,28 @@ source .venv/bin/activate
 
 # Install dependencies
 pip install django
+
+# Run database migrations
+python3 manage.py migrate
+
+# Create an admin user
+python3 manage.py createsuperuser
+
+# Start the development server
+python3 manage.py runserver
+```
+
+### Setup (uv)
+
+```bash
+# Clone the repository
+git clone <repo-url>
+cd vari-mitra
+
+# Create virtual environment and install dependencies
+uv venv
+source .venv/bin/activate
+uv pip install django
 
 # Run database migrations
 python3 manage.py migrate
@@ -223,6 +246,15 @@ Access the Django admin at `/admin/` to add:
 - [ ] SMS notifications on status changes
 - [ ] Docker setup for deployment
 - [ ] Test suite implementation
+
+---
+
+## License
+
+Copyright © 2026 Prasad Raju. Some rights reserved.
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ---
 
