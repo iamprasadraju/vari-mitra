@@ -251,7 +251,9 @@ Access the Django admin at `/admin/` to add:
 
 ## License
 
-Copyright © 2026 Prasad Raju. Some rights reserved.
+<p>Copyright © 2026 Prasad Raju. Some rights reserved.</p>
+
+[![CC BY-NC-SA 4.0](https://upload.wikimedia.org/wikipedia/commons/1/12/Cc-by-nc-sa_icon.svg)](http://creativecommons.org)
 
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
