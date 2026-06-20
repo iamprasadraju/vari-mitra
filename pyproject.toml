@@ -4,4 +4,8 @@ version = "0.1.0"
 description = "A digital paddy brokerage management platform connecting farmers, workers, vehicles, and brokers."
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "django",
+    "pillow>=12.2.0",
+    "pyaadhaar>=2.0.2",
+]
